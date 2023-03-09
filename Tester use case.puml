@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+left to right direction
+skinparam packageStyle rectangle
+actor :Primær bruger af systemet: as pbas #limegreen;line:limegreen;line.bold
+actor :Sundhedsfagligt personale: as sp #blue;line:blue;line.bold
+actor :Patient: as p #pink;line:pink;line.bold
+actor :Lægesekretær: as l #purple;line:purple;line.bold
+actor :IT-medarbejder: as it #yellow;line:yellow;line.bold
+
+rectangle NemGraviditet {
+usecase (Indskriv data)
+usecase (Administration af kalender)
+usecase (Booke konsultation)
+usecase (indhent information)
+usecase (Indregistreringskonsultation)
+usecase (Digitalt patientoverblik)
+usecase (Vedligeholdelse)
+pbas -- (indhent information) #limegreen;line.bold
+pbas -- (Booke konsultation) #limegreen;line.bold
+sp -- (Indskriv data) #blue;line.bold
+sp -- (Indregistreringskonsultation) #blue;line.bold
+p -- (Digitalt patientoverblik) #line:pink;line.bold
+(Vedligeholdelse) -- it #yellow;line.bold
+(Administration af kalender) -- l #purple;line.bold
+}
+pbas <-up- sp #line:blue;line.bold
+pbas <-up- p #line:pink;line.bold
+(Indregistreringskonsultation) .> (Indskriv data) : include
+(Booke konsultation) .> (Indskriv data) : include
+(Indregistreringskonsultation) .> (Booke konsultation) : include
+@enduml
