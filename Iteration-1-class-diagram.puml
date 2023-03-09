@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Bruger {
+Navn: string
+Bruger ID: int
+}
+sundhedsfaglig -up-> Bruger
+class sundhedsfaglig {
+Profession: string
+}
+class Patient {
+CPR: int
+Tildelt sundhedsfaglig: string
+}
+Patient -up-> Bruger
+class Lægesekretær {
+Afdeling: string
+}
+Lægesekretær -up-> Bruger
+class System {
+Navn: string
+Bruger: string
+Funktioner: string
+}
+System "1"-left-"1..*" Bruger :indeholder
+class Vedligeholdelse {
+Software: string
+Timer: int
+}
+System "1"-right-"1..*" Vedligeholdelse :kræver
+class "IT-medarbejdere" {
+Navn: string
+Bruger ID: int
+}
+"IT-medarbejdere" -up-> "1..*" Vedligeholdelse
+class Funktioner {
+Beskeder: string
+Book tid: string
+Indhent data: string
+Indskriv/indregistrering: string
+Log ind: string
+
+}
+Funktioner -up-"1" System
+
+class Beskeder {
+Indbakke: string
+Udbakke: string
+}
+class "Book tid" {
+Dato: int
+}
+class "Indhent data" {
+Notater: string
+}
+class "Indskriv/indregistrering" {
+Navn: string
+CPR: int
+}
+class "Log ind" {
+MitID: string
+Ydernummer: int
+}
+
+
+Funktioner *-- Beskeder
+Funktioner *-- "Book tid"
+Funktioner *-- "Indhent data"
+Funktioner *-- "Indskriv/indregistrering"
+Funktioner *-- "Log ind"
+
+
+
+
+@enduml
